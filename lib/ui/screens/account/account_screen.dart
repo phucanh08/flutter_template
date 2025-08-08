@@ -35,7 +35,10 @@ class AccountScreen extends StatelessWidget {
                       children: [
                         Text('Khách', style: theme.textTheme.titleLarge),
                         SizedBox(height: 4),
-                        Text('Chưa đăng nhập', style: theme.textTheme.bodySmall),
+                        Text(
+                          'Chưa đăng nhập',
+                          style: theme.textTheme.bodySmall,
+                        ),
                       ],
                     ),
                   ],
@@ -73,12 +76,33 @@ class AccountScreen extends StatelessWidget {
           ListTile(
             leading: Icon(CupertinoIcons.chart_bar_square),
             title: Text('Thống kê'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return CupertinoPageScaffold(
+                      navigationBar: CupertinoNavigationBar(
+
+                        middle: Text('Page 2 of tab '),
+                      ),
+                      child: Center(
+                        child: CupertinoButton(
+                          child: const Text('Back'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(CupertinoIcons.rectangle_3_offgrid),
             title: Text('Phần mở rộng'),
-            onTap: () {},
+            onTap: () => router.push(ExtensionsRoute()),
           ),
           ListTile(
             leading: Icon(CupertinoIcons.arrow_2_circlepath),
@@ -111,16 +135,29 @@ class AccountScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Phiên bản: 1.0.0"),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(CupertinoIcons.arrow_clockwise),
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   child: Row(
+      //     mainAxisSize: MainAxisSize.max,
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: <Widget>[
+      //       CupertinoButton(child: Icon(CupertinoIcons.chevron_back), onPressed: () {}),
+      //       CupertinoButton(child: Icon(CupertinoIcons.chevron_forward), onPressed: () {}),
+      //       CupertinoButton(child: Icon(CupertinoIcons.share), onPressed: () {}),
+      //
+      //     ],
+      //   ),
+      // ),
+
+      // bottomNavigationBar: Row(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: [
+      //     Text("Phiên bản: 1.0.0"),
+      //     IconButton(
+      //       onPressed: () {},
+      //       icon: Icon(CupertinoIcons.arrow_clockwise),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

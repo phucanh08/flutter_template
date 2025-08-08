@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../../core/app_router/app_router.gr.dart';
+import '../account/account_screen.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,24 +23,36 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showCupertinoSheet(
+                  context: context,
+                  useNestedNavigation: true,
+                  pageBuilder: (context) => AccountScreen(),
+                );
+              },
               icon: Icon(CupertinoIcons.person_alt_circle),
             ),
             centerTitle: false,
-            title: const TabBar(
-              padding: EdgeInsets.zero,
-              labelPadding: EdgeInsets.zero,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: 8),
-              indicatorSize: TabBarIndicatorSize.label,
-              dividerColor: Colors.transparent,
-              tabs: <Widget>[
-                Tab(text: "Kệ sách"),
-                Tab(text: "Lịch sử"),
-                Tab(text: ""),
+            title: Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: const TabBar(
+                    padding: EdgeInsets.zero,
+                    labelPadding: EdgeInsets.zero,
+                    indicatorPadding: EdgeInsets.symmetric(horizontal: 8),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    dividerColor: Colors.transparent,
+                    tabs: <Widget>[
+                      Tab(text: "Kệ sách"),
+                      Tab(text: "Lịch sử"),
+                    ],
+                  ),
+                ),
+                Spacer(),
               ],
             ),
             actions: [
-              IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
               IconButton(
                 onPressed: () {},
                 icon: Icon(CupertinoIcons.ellipsis_vertical),
@@ -57,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
-          switch(index){
+          switch (index) {
             case 0:
               context.router.push(const HomeRoute());
               break;
@@ -87,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Cộng đồng',
           ),
           NavigationDestination(
-            icon: Icon(CupertinoIcons.person_crop_circle),
-            label: 'Cá nhân',
+            icon: Icon(CupertinoIcons.search),
+            label: 'Tìm kiếm',
           ),
         ],
       ),
