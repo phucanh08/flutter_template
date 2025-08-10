@@ -13,7 +13,12 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   auto_route: ^10.1.0+1
+
+
   flutter_js: ^0.8.5
+  html: ^0.15.6
+  xpath_selector_html_parser: ^3.0.1
+  dio: ^5.9.0
 
 
 dev_dependencies:
@@ -27,3 +32,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/js/

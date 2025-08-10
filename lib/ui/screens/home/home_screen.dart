@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../../core/app_router/app_router.gr.dart';
+import '../../../data/repo_impl/extension_repo_impl.dart';
 import '../account/account_screen.dart';
 
 @RoutePage()
@@ -14,6 +15,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final extensionRepo = ExtensionRepoImpl();
+
+  @override
+  void initState() {
+    extensionRepo.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // extensionRepo.home();
+                  extensionRepo.test();
+                },
                 icon: Icon(CupertinoIcons.ellipsis_vertical),
               ),
             ],
